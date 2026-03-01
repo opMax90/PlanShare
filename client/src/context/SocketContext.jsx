@@ -18,8 +18,10 @@ export const SocketProvider = ({ children }) => {
 
     useEffect(() => {
         if (user && !socketRef.current) {
-            const newSocket = io('http://localhost:5000', {
+            const newSocket = io('https://planshare.onrender.com', {
                 withCredentials: true,
+                reconnection: true,
+                reconnectionAttempts: 5,
                 transports: ['websocket', 'polling'],
             });
 
